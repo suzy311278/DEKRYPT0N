@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
+# DEKRIPT0N Conference Website
 
-## Project info
+The official website for **DEKRIPT0N** — Asia's premier cybersecurity conference.
 
-**URL**: https://lovable.dev/projects/36e01e03-fc12-4b87-920e-9bd705034e1f
+## Tech Stack
 
-## How can I edit this code?
+- **Vite** — fast dev server & build tool
+- **React 18** + **TypeScript**
+- **Tailwind CSS** — utility-first styling
+- **shadcn/ui** — component library
+- **React Router** — client-side routing
 
-There are several ways of editing your application.
+## Local Development
 
-**Use Lovable**
+Requires **Node.js ≥ 18** and **npm**.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/36e01e03-fc12-4b87-920e-9bd705034e1f) and start prompting.
+```bash
+# Install dependencies
+npm install
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start dev server (http://localhost:8080)
 npm run dev
+
+# Production build
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+├── components/       # Reusable UI components
+│   ├── ui/           # shadcn/ui primitives
+│   ├── Hero.tsx       # Terminal-style hero with countdown
+│   ├── Navigation.tsx # Top nav with theme toggle
+│   ├── Services.tsx   # Featured speakers section
+│   ├── Solutions.tsx  # Conference tracks
+│   ├── WhyUs.tsx      # Why attend + stats
+│   ├── Testimonials.tsx
+│   ├── Contact.tsx    # Registration form + pricing
+│   └── Footer.tsx
+├── pages/            # Route pages
+├── hooks/            # Custom React hooks
+├── assets/           # Static assets
+├── index.css         # Design system (color tokens, themes)
+└── App.tsx           # Router + providers
+```
 
-**Use GitHub Codespaces**
+## Theming
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Two themes controlled via a toggle in the navbar:
 
-## What technologies are used for this project?
+| Mode  | Background     | Accent        |
+|-------|---------------|---------------|
+| Light | White (`#fafafa`) | Red (`hsl(0, 85%, 50%)`) |
+| Dark  | Black (`#0a0a0a`) | Red (`hsl(0, 85%, 55%)`) |
 
-This project is built with:
+Theme tokens are defined in `src/index.css` using CSS custom properties.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment
 
-## How can I deploy this project?
+Build the production bundle and deploy the `dist/` folder to any static host (Vercel, Netlify, Cloudflare Pages, etc.):
 
-Simply open [Lovable](https://lovable.dev/projects/36e01e03-fc12-4b87-920e-9bd705034e1f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```bash
+npm run build
+```
