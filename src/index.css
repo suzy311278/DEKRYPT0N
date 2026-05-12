@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DEKRIPT0N Design System — Red & White (Light) / Black & Red (Dark) */
+
+@layer base {
+  :root {
+    /* LIGHT MODE — Clean White with Red Accents */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 5% 93%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 5% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 85% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 5% 88%;
+    --input: 0 5% 92%;
+    --ring: 0 85% 50%;
+
+    --radius: 0.15rem;
+
+    /* Terminal theme colors — LIGHT */
+    --terminal-green: 0 85% 50%;
+    --terminal-green-dark: 0 80% 40%;
+    --terminal-green-light: 0 70% 62%;
+    --terminal-bg: 0 0% 98%;
+    --terminal-text: 0 0% 10%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 85% 50%) 0%, hsl(350 80% 42%) 100%);
+    --gradient-terminal: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 2% 95%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(0 85% 50% / 0.08) 0%, transparent 70%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 20px hsl(0 85% 50% / 0.2);
+    --shadow-intense: 0 0 15px hsl(0 85% 50% / 0.35);
+    --shadow-card: 0 2px 12px hsl(0 0% 0% / 0.06);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* DARK MODE — Deep Black with Red Accents */
+    --background: 0 0% 4%;
+    --foreground: 0 5% 80%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 5% 80%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 5% 80%;
+
+    --primary: 0 85% 55%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 5% 12%;
+    --secondary-foreground: 0 5% 70%;
+
+    --muted: 0 5% 12%;
+    --muted-foreground: 0 5% 48%;
+
+    --accent: 0 85% 55%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 8% 16%;
+    --input: 0 5% 12%;
+    --ring: 0 85% 55%;
+
+    /* Terminal theme colors — DARK */
+    --terminal-green: 0 85% 55%;
+    --terminal-green-dark: 0 80% 42%;
+    --terminal-green-light: 0 70% 65%;
+    --terminal-bg: 0 0% 4%;
+    --terminal-text: 0 5% 80%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 85% 55%) 0%, hsl(350 80% 44%) 100%);
+    --gradient-terminal: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 8%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(0 85% 55% / 0.12) 0%, transparent 70%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(0 85% 55% / 0.3);
+    --shadow-intense: 0 0 20px hsl(0 85% 55% / 0.45);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Terminal cursor blink effect */
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .terminal-cursor {
+    animation: blink 1s infinite;
+  }
+
+  /* Scanline effect */
+  .scanlines {
+    position: relative;
+  }
+
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 0, 0, 0.015) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .dark .scanlines::before {
+    background: linear-gradient(
+      transparent 50%,
+      rgba(220, 38, 38, 0.012) 50%
+    );
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+
+  /* Selection color */
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+}
